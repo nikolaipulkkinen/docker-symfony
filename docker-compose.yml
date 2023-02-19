@@ -1,5 +1,5 @@
 version: '3'
-
+name: app
 services:
 #  db:
 #
@@ -15,6 +15,7 @@ services:
       - ./docker/nginx/default.local.conf:/etc/nginx/conf.d/default.conf
       - ./docker/nginx/html:/usr/share/nginx/html
     command: [nginx, '-g', 'daemon off;']
+    # command: [nginx-debug, '-g', 'daemon off;'] # debug
   php:
     image: php:8.1.15-fpm-alpine3.17
     volumes:
