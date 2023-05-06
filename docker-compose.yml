@@ -16,11 +16,11 @@ services:
       - ./docker/nginx/html:/usr/share/nginx/html
     command: [nginx, '-g', 'daemon off;']
     # command: [nginx-debug, '-g', 'daemon off;'] # debug
+    depends_on:
+      - php
   php:
     container_name: php
     build: ./docker/php
     volumes:
       - ./docker/nginx/html:/var/www/html
       - ./docker/php/config/${APP_ENV}/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - nginx

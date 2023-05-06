@@ -3,6 +3,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get -y install sudo \
     && apt-get -y install apt-transport-https \
     && apt-get -y install gnupg \
+    && sudo apt-get install -y libicu-dev && docker-php-ext-install intl \
+    && docker-php-ext-install opcache \
     && curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash \
     && apt -y install symfony-cli
 WORKDIR /
