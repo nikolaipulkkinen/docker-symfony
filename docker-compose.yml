@@ -1,5 +1,4 @@
 version: '3'
-name: app
 services:
 #  db:
 #
@@ -7,8 +6,9 @@ services:
 #    depends_on:
 #      - db
   nginx:
-    build: ./docker/nginx
+    container_name: nginx
     image: nginx:custom
+    build: ./docker/nginx
     ports:
       - '80:80'
     volumes:
@@ -17,6 +17,9 @@ services:
     command: [nginx, '-g', 'daemon off;']
     # command: [nginx-debug, '-g', 'daemon off;'] # debug
   php:
-    image: php:8.1.15-fpm-alpine3.17
+    container_name: php
+    build: ./docker/php
     volumes:
       - ./docker/nginx/html:/var/www/html
+    depends_on:
+      - nginx
