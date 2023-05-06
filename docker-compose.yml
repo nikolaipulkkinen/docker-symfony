@@ -21,5 +21,6 @@ services:
     build: ./docker/php
     volumes:
       - ./docker/nginx/html:/var/www/html
+      - ./docker/php/config/${APP_ENV}/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - nginx
